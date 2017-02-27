@@ -30,7 +30,9 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/
             }
         ]
-    }
+    },
+    //using source maps we can debug without all the extra code
+    devtool: 'cheap-module-eval-source-map'
 };
 
 //this is so we can use babe, react and jsx
