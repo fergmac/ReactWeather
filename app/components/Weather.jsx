@@ -16,7 +16,10 @@ var Weather = React.createClass({
 
         this.setState({
             isLoading: true,
-            errorMessage: undefined
+            //clears the data after a search
+            errorMessage: undefined,
+            location: undefined,
+            temp: undefined
         });
 
         openWeatherMap.getTemp(location).then(function (temp) {
@@ -32,6 +35,25 @@ var Weather = React.createClass({
             });
         });
     },
+    componentDidMount: function() {
+        var location = this.props.location.query.location;
+
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            //removes location query string after weather has been succesfully searched for
+            window.location.hash = '#/';
+        }   
+    },
+    componentWillReceiveProps: function (newProps) {
+        //when you search from any component the weather details will update
+        var location = newProps.locationq.query.location;
+
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            //removes location query string after weather has been succesfully searched for
+            window.location.hash = '#/';
+        }  
+    },  
     render: function () {
         //pull variables off the state, so we can pass down as props
         var {isLoading, temp, location, errorMessage} = this.state;
