@@ -5,11 +5,15 @@ var Main = (props) => {
     return(
         <div>
             <Nav />
-            <h2>Main Component</h2>
+            <div className="row">
+                <div className="columns medium-6 large-4 small-centered">
+                    {props.children}
+                </div>
+            </div>
             {/* we use this anywhere we want to put the children, can remove the this. 
             when using stateless functional component with props already passed Main
             */}
-            {props.children}
+            
         </div>
     )
 };
