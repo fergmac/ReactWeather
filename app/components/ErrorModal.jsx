@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var ReactDOMServer = require('react-dom/server');
 
 var ErrorModal = React.createClass({
-    getDefaultProps: function () {
+    getDefaultProps() {
         return {
             title: 'Error'
         };
@@ -12,7 +12,7 @@ var ErrorModal = React.createClass({
         title: React.PropTypes.string,
         message: React.PropTypes.string.isRequired
     },
-    componentDidMount: function() {
+    componentDidMount() {
          var {title, message} = this.props;
         //this is so that we dont Mutate the DOM
         var modalMarkup = (
@@ -32,7 +32,7 @@ var ErrorModal = React.createClass({
         var modal = new Foundation.Reveal($('#error-modal'));
         modal.open();
     },
-    render: function() {
+    render() {
        
         return (
             <div>

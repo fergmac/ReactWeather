@@ -6,12 +6,12 @@ var openWeatherMap = require('openWeatherMap');
 var ErrorModal = require('ErrorModal');
 
 var Weather = React.createClass({
-    getInitialState: function () {
+    getInitialState() {
         return {
             isLoading: false
         }
     },
-    handleSearch: function (location) {
+    handleSearch(location) {
         var that = this;
 
         this.setState({
@@ -35,7 +35,7 @@ var Weather = React.createClass({
             });
         });
     },
-    componentDidMount: function() {
+    componentDidMount() {
         var location = this.props.location.query.location;
 
         if (location && location.length > 0) {
@@ -44,7 +44,7 @@ var Weather = React.createClass({
             window.location.hash = '#/';
         }   
     },
-    componentWillReceiveProps: function (newProps) {
+    componentWillReceiveProps(newProps) {
         //when you search from any component the weather details will update
         var location = newProps.locationq.query.location;
 
@@ -54,7 +54,7 @@ var Weather = React.createClass({
             window.location.hash = '#/';
         }  
     },  
-    render: function () {
+    render() {
         //pull variables off the state, so we can pass down as props
         var {isLoading, temp, location, errorMessage} = this.state;
 
