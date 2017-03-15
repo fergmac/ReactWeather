@@ -2,10 +2,11 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 //destructuring syntax
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-var Main = require('Main');
-var Weather = require('Weather');
-var About = require('About');
-var Examples = require('Examples');
+
+import Main from 'Main';
+import Weather from 'Weather';
+import About from 'About';
+import Examples  from 'Examples';
 
 //Load Fondation
 require('style!css!foundation-sites/dist/foundation.min.css');

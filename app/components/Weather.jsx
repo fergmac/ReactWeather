@@ -1,40 +1,28 @@
 var React = require('react');
 
-var WeatherForm = require('WeatherForm');
-var WeatherMessage =require('WeatherMessage');
 var openWeatherMap = require('openWeatherMap');
-var ErrorModal = require('ErrorModal');
+import WeatherForm from 'WeatherForm';
+import WeatherMessage from 'WeatherMessage';
+import ErrorModal from 'ErrorModal';
 
-var Weather = React.createClass({
-    getInitialState() {
-        return {
+class Weather extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
             isLoading: false
         }
-    },
-    handleSearch(location) {
+    }
+    handleSearch = (location) => {
         var that = this;
 
-        this.setState({
-            isLoading: true,
-            //clears the data after a search
-            errorMessage: undefined,
-            location: undefined,
-            temp: undefined
-        });
+        this.setState({isLoading: true, errorMessage: undefined, location: undefined, temp: undefined});
 
         openWeatherMap.getTemp(location).then(function (temp) {
-            that.setState({
-            location: location,
-            temp: temp,
-            isLoading: false
-         });
+            that.setState({location: location, temp: temp, isLoading: false});
         }, function (e) {
-            that.setState({
-                isLoading: false,
-                errorMessage: e.message
-            });
+            that.setState({isLoading: false, errorMessage: e.message});
         });
-    },
+    }
     componentDidMount() {
         var location = this.props.location.query.location;
 
@@ -43,17 +31,17 @@ var Weather = React.createClass({
             //removes location query string after weather has been succesfully searched for
             window.location.hash = '#/';
         }   
-    },
+    }
     componentWillReceiveProps(newProps) {
         //when you search from any component the weather details will update
-        var location = newProps.locationq.query.location;
+        var location = newProps.location.query.location;
 
         if (location && location.length > 0) {
             this.handleSearch(location);
             //removes location query string after weather has been succesfully searched for
             window.location.hash = '#/';
         }  
-    },  
+    }
     render() {
         //pull variables off the state, so we can pass down as props
         var {isLoading, temp, location, errorMessage} = this.state;
@@ -83,6 +71,6 @@ var Weather = React.createClass({
             </div>
         )
     }
-});
-
-module.exports = Weather;
+};
+ 
+ export default Weather;

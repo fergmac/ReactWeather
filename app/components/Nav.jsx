@@ -1,7 +1,11 @@
 var React = require('react');
 var {Link, IndexLink} = require('react-router');
 
-var Nav = React.createClass({
+class Nav extends React.Component{
+    constructor(props) {
+        super(props);
+        this.onSearch = this.onSearch.bind(this);
+    }
     onSearch(e) {
         e.preventDefault();
         var location = this.refs.search.value;
@@ -11,7 +15,7 @@ var Nav = React.createClass({
             this.refs.search.value = '';
             window.location.hash = '#/?location=' + encodedLocation;
         }
-    },
+    }
     render() {
         return(
             <div className="top-bar">
@@ -42,6 +46,6 @@ var Nav = React.createClass({
             </div>
         )
     }
-})
+};
 
-module.exports = Nav;
+export default Nav;

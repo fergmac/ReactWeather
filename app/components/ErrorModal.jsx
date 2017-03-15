@@ -2,16 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactDOMServer = require('react-dom/server');
 
-var ErrorModal = React.createClass({
-    getDefaultProps() {
-        return {
-            title: 'Error'
-        };
-    },
-    propTypes: {
-        title: React.PropTypes.string,
-        message: React.PropTypes.string.isRequired
-    },
+class ErrorModal extends React.Component{
     componentDidMount() {
          var {title, message} = this.props;
         //this is so that we dont Mutate the DOM
@@ -31,15 +22,22 @@ var ErrorModal = React.createClass({
         //new instance of model 
         var modal = new Foundation.Reveal($('#error-modal'));
         modal.open();
-    },
+    }
     render() {
-       
         return (
             <div>
             </div>
         )
-        
     }
-});
+};
 
-module.exports = ErrorModal;
+ErrorModal.getDefaultProps = {
+    title: 'Error'
+}
+
+ErrorModal.PropTypes = {
+    title: React.PropTypes.string,
+    message: React.PropTypes.string.isRequired
+}
+
+export default ErrorModal;
